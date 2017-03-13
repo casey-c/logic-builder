@@ -1,28 +1,21 @@
 #include "polishnode.h"
 
-//////////////////////////////////
-/// Constructor and Destructor ///
-//////////////////////////////////
-
-/*
- * Constructor
- */
-PolishNode::PolishNode()
-{
-    // TODO: implementation
-}
+//////////////////
+/// Destructor ///
+//////////////////
 
 /*
  * Destructor deletes all child nodes recursively
  */
 PolishNode::~PolishNode()
 {
-    // TODO: implementation
+    for (PolishNode* child : children)
+        delete child;
 }
 
-/////////////////
-/// Add nodes ///
-/////////////////
+////////////////////////
+/// Create new nodes ///
+////////////////////////
 
 /*
  * Creates a new node beneath this one.
@@ -30,8 +23,23 @@ PolishNode::~PolishNode()
  * Returns:
  *      the newly created node
  */
-PolishNode* PolishNode::makeNewChild(int type, QString n)
+PolishNode* PolishNode::makeNewChild()
 {
-    // TODO: implementation
-    return nullptr;
+    // Only operators can have children
+    if (!op)
+        return nullptr;
+
+    // New nodes have no details yet
+    PolishNode* newNode = new PolishNode(this, "___", false, false);
+    children.append(newNode);
+    return newNode;
+}
+
+/*
+ * Sets the details of a node
+ */
+void PolishNode::setDetails(QString t, bool o)
+{
+    text = t;
+    op = wrapped = o;
 }

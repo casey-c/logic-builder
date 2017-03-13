@@ -8,23 +8,23 @@
 class CAddNode : public ICommand
 {
 public:
-    CAddNode(PolishTree* t, QString o, int a) :
+    CAddNode(PolishTree* t, QString n, int a) :
         tree(t),
-        op(o),
+        nodeText(n),
         arity(a) {
-        text = "Add " + o;
+        text = "Add " + n;
     }
 
     bool execute();
     void undo();
 
-    ICommand* copy() { return new CAddNode(tree, op, arity); }
+    ICommand* copy() { return new CAddNode(tree, nodeText, arity); }
 
 private:
     PolishTree* tree;
     PolishNode* node;
 
-    QString op;
+    QString nodeText;
     int arity;
 
 };
