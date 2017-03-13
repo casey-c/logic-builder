@@ -24,17 +24,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
-    polishtree.cpp \
-    polishnode.cpp \
+        MainWindow/mainwindow.cpp \
+    Tree/polishtree.cpp \
+    Tree/polishnode.cpp \
     Command/commandinvoker.cpp \
     Command/caddnode.cpp
 
-HEADERS  += mainwindow.h \
-    polishtree.h \
-    polishnode.h \
+HEADERS  += MainWindow/mainwindow.h \
+    Tree/polishtree.h \
+    Tree/polishnode.h \
     Command/icommand.h \
     Command/commandinvoker.h \
     Command/caddnode.h
 
-FORMS    += mainwindow.ui
+FORMS    += MainWindow/mainwindow.ui

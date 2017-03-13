@@ -3,6 +3,7 @@
 
 #include "icommand.h"
 #include <QStack>
+#include <QObject>
 
 class CommandInvoker : public QObject
 {

@@ -2,8 +2,8 @@
 #define CADDNODE_H
 
 #include "icommand.h"
-#include "polishtree.h"
-#include "polishnode.h"
+#include "Tree/polishtree.h"
+#include "Tree/polishnode.h"
 
 class CAddNode : public ICommand
 {
@@ -18,7 +18,7 @@ public:
     bool execute();
     void undo();
 
-    ICommand* copy() { return new CAddNode(tree,op); }
+    ICommand* copy() { return new CAddNode(tree, op, arity); }
 
 private:
     PolishTree* tree;

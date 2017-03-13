@@ -1,6 +1,7 @@
 #ifndef ICOMMAND_H
 #define ICOMMAND_H
 
+#include <QString>
 
 /*
  * Interface for commands

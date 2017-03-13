@@ -35,6 +35,7 @@ PolishTree::~PolishTree()
 bool PolishTree::addNArityOperator(int arity, QString n)
 {
     // TODO: implementation
+    return false;
 }
 
 /////////////
