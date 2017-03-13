@@ -24,8 +24,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    polishtree.cpp \
+    polishnode.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    polishtree.h \
+    polishnode.h
 
 FORMS    += mainwindow.ui
