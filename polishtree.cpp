@@ -27,8 +27,12 @@ PolishTree::~PolishTree()
 
 /*
  * The main add function
+ *
+ * Returns:
+ *      true if successfully added the node
+ *      false otherwise
  */
-void PolishTree::addNArityOperator(int arity, QString n)
+bool PolishTree::addNArityOperator(int arity, QString n)
 {
     // TODO: implementation
 }
