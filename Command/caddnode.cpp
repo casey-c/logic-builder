@@ -5,7 +5,7 @@
  */
 bool CAddNode::execute()
 {
-    return tree->addNArityNode(arity, nodeText, arity > 0);
+    return tree->addNArityNode(arity, nodeText);
 }
 
 /*

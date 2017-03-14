@@ -49,6 +49,9 @@ public:
     PolishNode* makeNewChild();
     void setDetails(QString t, bool o);
 
+    /* Print */
+    QString getPlaintext();
+
     /* Boolean identifiers */
     bool isLeaf() { return children.isEmpty(); }
 

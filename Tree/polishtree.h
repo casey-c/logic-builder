@@ -14,7 +14,7 @@ public:
     ~PolishTree();
 
     /* Add nodes */
-    bool addNArityNode(int arity, QString t, bool o);
+    bool addNArityNode(int arity, QString t);
     //void addNullaryOperator(QString n) { addNArityOperator(0,n); }
     //void addUnaryOperator(QString n) { addNArityOperator(1,n); }
     //void addBinaryOperator(QString n) { addNArityOperator(2,n); }

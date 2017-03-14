@@ -31,7 +31,7 @@ PolishNode* PolishNode::makeNewChild()
 
     // New nodes have no details yet
     PolishNode* newNode = new PolishNode(this, "___", false, false);
-    children.append(newNode);
+    children.prepend(newNode);
     return newNode;
 }
 
@@ -43,3 +43,55 @@ void PolishNode::setDetails(QString t, bool o)
     text = t;
     op = wrapped = o;
 }
+
+/////////////
+/// Print ///
+/////////////
+
+/*
+ * Recursive function to get a plaintext string
+ */
+QString PolishNode::getPlaintext()
+{
+    QString result = "";
+
+    // Opening parens
+    if (wrapped)
+        result += "(";
+
+    // Non operators just include their text
+    if (!op)
+        result += text;
+
+    // Operators must include each of their children separated by this op symbol
+    else
+    {
+        for (int i = 0; i < children.size(); ++i)
+        {
+            result += children.at(i)->getPlaintext();
+
+            // Add the operator in between
+            if (i != children.size() - 1)
+                result += " " + text + " ";
+        }
+
+    }
+
+    // Closing parens
+    if (wrapped)
+        result += ")";
+
+    return result;
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -33,8 +33,11 @@ PolishTree::~PolishTree()
  *      true if successfully added the node and all potential children
  *      false otherwise
  */
-bool PolishTree::addNArityNode(int arity, QString t, bool o)
+bool PolishTree::addNArityNode(int arity, QString t)
 {
+    // If the arity is positive, we have an operator
+    bool o = (arity > 0);
+
     // No first node yet
     if (root == nullptr)
     {
@@ -90,8 +93,12 @@ bool PolishTree::addNArityNode(int arity, QString t, bool o)
  */
 QString PolishTree::toPlaintextString()
 {
-    // TODO: implementation
-    return nullptr;
+    // If no root, we have an empty string
+    if (root == nullptr)
+        return "";
+
+    // Otherwise recurse off of the root
+    return root->getPlaintext();
 }
 
 /*
