@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+CONFIG += test
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -24,7 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        MainWindow/mainwindow.cpp \
+    MainWindow/mainwindow.cpp \
     Tree/polishtree.cpp \
     Tree/polishnode.cpp \
     Command/commandinvoker.cpp \
@@ -36,5 +37,13 @@ HEADERS  += MainWindow/mainwindow.h \
     Command/icommand.h \
     Command/commandinvoker.h \
     Command/caddnode.h
+
+test{
+    HEADERS += Test/testplaintext.h
+    SOURCES += Test/testplaintext.cpp
+    SOURCES -= main.cpp
+
+    QT += testlib
+}
 
 FORMS    += MainWindow/mainwindow.ui

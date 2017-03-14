@@ -8,7 +8,7 @@
 /*
  * Constructor
  */
-PolishTree::PolishTree()
+PolishTree::PolishTree() : root(nullptr)
 {
     // TODO: implementation
 }
