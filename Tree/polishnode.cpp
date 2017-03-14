@@ -56,7 +56,7 @@ QString PolishNode::getPlaintext()
     QString result = "";
 
     // Opening parens
-    if (wrapped)
+    if (wrapped && (children.size() > 1))
         result += "(";
 
     // Non operators just include their text
@@ -66,19 +66,26 @@ QString PolishNode::getPlaintext()
     // Operators must include each of their children separated by this op symbol
     else
     {
-        for (int i = 0; i < children.size(); ++i)
+        // Single arity check
+        if (children.size() == 1)
+            result += text + children.at(0)->getPlaintext();
+
+        // For arities > 1
+        else
         {
-            result += children.at(i)->getPlaintext();
+            for (int i = 0; i < children.size(); ++i)
+            {
+                result += children.at(i)->getPlaintext();
 
-            // Add the operator in between
-            if (i != children.size() - 1)
-                result += " " + text + " ";
+                // Add the operator in between
+                if (i != children.size() - 1)
+                    result += " " + text + " ";
+            }
         }
-
     }
 
     // Closing parens
-    if (wrapped)
+    if (wrapped && (children.size() > 1))
         result += ")";
 
     return result;
