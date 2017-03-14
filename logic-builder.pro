@@ -5,7 +5,9 @@
 #-------------------------------------------------
 
 QT       += core gui
-CONFIG += test
+
+# Uncomment the following line to run tests
+#CONFIG += test
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
