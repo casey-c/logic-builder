@@ -22,8 +22,8 @@ Additionally, alpha-0.1 has support for autocopy, which will copy a formula to t
 After launching logic-builder, press any of the operator keybinds listed above to begin a WFF. The lower ouput section's plaintext text box is typically where you'd want to look while filling in the current formula. Underlines appear ( _ _ _ ) where required elements need to be created. They are filled in from left to right.
 
 An example usage:
-1. Type & to produce: ___ ∧ ___
-2. Type P to fill in the first underlined section: P ∧ ___
+1. Type & to produce: _ _ _ ∧ _ _ _
+2. Type P to fill in the first underlined section: P ∧ _ _ _
 3. Type Q to fill in the remaining underlined section: P ∧ Q
 
 Once the formula is complete, the program will move the plaintext to the upper pane (which is still under development). If auto-copy is enabled, the desired output will be copied into the clipboard. At this point, you can also choose to copy the other formats by using the corresponding button on the bottom panel.
@@ -36,7 +36,7 @@ Starting a new WFF will clear the bottom output area (with no way to return back
  * Support for quantifiers (∀ and ∃)
  * Support for custom functions (e.g. subset(x,y) )
  * Support for constants (lower case a, b, etc.)
- * Input for larger *ary operators. (number followed by a symbol can produce a different arity than default: e.g. 3& produces ___∧___∧___ ) - this behavior is already somewhat implemented, it just needs a decent control scheme
+ * Input for larger *ary operators. (number followed by a symbol can produce a different arity than default: e.g. 3& produces _ _ _ ∧ _ _ _ ∧ _ _ _ ) - this behavior is already somewhat implemented, it just needs a decent control scheme
  * Cleanup of the UI - try and make it less hideous
  * Save / Export - more options to deal with multiple formulae: perhaps an output of all the WFF's created in their own .txt file
  * Fitch integration: make a *.prf file with premises / goals made with this app - so fitch problems can be created outside of fitch
