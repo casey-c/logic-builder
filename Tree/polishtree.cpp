@@ -44,7 +44,8 @@ bool PolishTree::addNArityNode(int arity, QString t)
         if (stack.isEmpty())
         {
             wff = true;
-            emit wffCreated(toPlaintextString());
+            QString plain = toPlaintextString();
+            emit wffCreated(plain, toLatexString(plain), toLispString());
         }
 
         return true;
@@ -79,7 +80,8 @@ bool PolishTree::addNArityNode(int arity, QString t)
     if (stack.isEmpty())
     {
         wff = true;
-        emit wffCreated(toPlaintextString());
+        QString plain = toPlaintextString();
+        emit wffCreated(plain, toLatexString(plain), toLispString());
     }
 
     return true;

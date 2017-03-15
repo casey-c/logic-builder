@@ -18,14 +18,17 @@
     <item row="1" column="1">
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="1" column="0">
-       <widget class="QRadioButton" name="radioButton">
+       <widget class="QRadioButton" name="radio_plain">
         <property name="text">
          <string>PlainText</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item row="2" column="0">
-       <widget class="QRadioButton" name="radioButton_2">
+       <widget class="QRadioButton" name="radio_latex">
         <property name="text">
          <string>LaTeX</string>
         </property>
@@ -36,10 +39,13 @@
         <property name="text">
          <string>Auto Copy</string>
         </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item row="3" column="0">
-       <widget class="QRadioButton" name="radioButton_3">
+       <widget class="QRadioButton" name="radio_lisp">
         <property name="text">
          <string>LISP</string>
         </property>

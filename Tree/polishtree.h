@@ -32,7 +32,7 @@ public:
 
 signals:
     void treeChanged(QString plain, QString latex, QString lisp);
-    void wffCreated(QString plain);
+    void wffCreated(QString plain, QString latex, QString lisp);
 
 private:
     PolishNode* root;

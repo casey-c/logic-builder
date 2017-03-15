@@ -31,9 +31,14 @@ private:
     QStringList formulaList;
     QStringListModel* listModel;
 
+    bool autocopy;
+
 public slots:
     void updateText(QString plain, QString latex, QString lisp);
-    void addWFF(QString plain);
+    void addWFF(QString plain, QString latex, QString lisp);
+
+private slots:
+    void on_checkBox_clicked();
 };
 
 #endif // MAINWINDOW_H

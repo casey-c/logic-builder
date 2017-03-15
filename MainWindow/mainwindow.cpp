@@ -5,10 +5,12 @@
 #include "Command/caddnode.h"
 
 #include <QDebug>
+#include <QClipboard>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    autocopy(true)
 {
     ui->setupUi(this);
 
@@ -94,10 +96,22 @@ void MainWindow::updateText(QString plain, QString latex, QString lisp)
     ui->line_lisp->setText(lisp);
 }
 
-void MainWindow::addWFF(QString plain)
+void MainWindow::addWFF(QString plain, QString latex, QString lisp)
 {
     formulaList.append(plain);
     listModel->setStringList(formulaList);
+
+    // Auto-copy
+    if (!autocopy)
+        return;
+
+    // Copy to clipboard
+    if (ui->radio_plain->isChecked())
+        QApplication::clipboard()->setText(plain);
+    else if (ui->radio_latex->isChecked())
+        QApplication::clipboard()->setText(latex);
+    else if (ui->radio_lisp->isChecked())
+        QApplication::clipboard()->setText(lisp);
 }
 
 void MainWindow::connectTree()
@@ -108,7 +122,17 @@ void MainWindow::connectTree()
             SLOT(updateText(QString,QString,QString)));
 
     connect(tree,
-            SIGNAL(wffCreated(QString)),
+            SIGNAL(wffCreated(QString,QString,QString)),
             this,
-            SLOT(addWFF(QString)));
+            SLOT(addWFF(QString,QString,QString)));
+}
+
+void MainWindow::on_checkBox_clicked()
+{
+    autocopy = !autocopy;
+
+    // Update the radio boxes' enabled status
+    ui->radio_plain->setEnabled(autocopy);
+    ui->radio_latex->setEnabled(autocopy);
+    ui->radio_lisp->setEnabled(autocopy);
 }
