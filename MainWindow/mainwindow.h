@@ -49,6 +49,7 @@ private slots:
 
 
     void changeAutoCopy(QAction* action);
+    void on_actionExit_triggered();
 };
 
 #endif // MAINWINDOW_H

@@ -163,3 +163,8 @@ void MainWindow::changeAutoCopy(QAction *action)
     // Enable autocopy on everything but disable
     autocopy = (action != ui->menu_autocopy_disable);
 }
+
+void MainWindow::on_actionExit_triggered()
+{
+    QApplication::quit();
+}
