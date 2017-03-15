@@ -18,13 +18,10 @@ public:
 
     /* Add nodes */
     bool addNArityNode(int arity, QString t);
-    //void addNullaryOperator(QString n) { addNArityOperator(0,n); }
-    //void addUnaryOperator(QString n) { addNArityOperator(1,n); }
-    //void addBinaryOperator(QString n) { addNArityOperator(2,n); }
 
     /* Print functions */
     QString toPlaintextString();
-    QString toLatexString();
+    QString toLatexString(QString plain);
     QString toLispString();
     QString toTreeString();
 

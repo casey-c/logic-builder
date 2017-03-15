@@ -105,10 +105,21 @@ QString PolishTree::toPlaintextString()
 /*
  * Returns a LaTeX QString representation of the tree
  */
-QString PolishTree::toLatexString()
+QString PolishTree::toLatexString(QString plain)
 {
-    // TODO: implementation
-    return "";
+    // LaTeX format takes the plaintext and converts the following symbols:
+    //   * ∧: \land
+    //   * ∨: \lor
+    //   * ¬: \neg
+    //   * →: \to
+    //   * ↔: \leftrightarrow
+    QString result = plain.replace("∧", "\\land");
+    result = result.replace("∨", "\\lor");
+    result = result.replace("¬", "\\neg");
+    result = result.replace("→", "\\to");
+    result = result.replace("↔", "\\leftrightarrow");
+
+    return result;
 }
 
 /*
@@ -131,5 +142,6 @@ QString PolishTree::toTreeString()
 
 void PolishTree::redraw()
 {
-    emit(treeChanged(toPlaintextString(), toLatexString(), toLispString()));
+    QString plain = toPlaintextString();
+    emit(treeChanged(plain, toLatexString(plain), toLispString()));
 }
