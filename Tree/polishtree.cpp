@@ -72,6 +72,7 @@ bool PolishTree::addNArityNode(int arity, QString t)
     // Check to see if we've made a WFF yet
     if (stack.isEmpty())
     {
+        wff = true;
         emit wffCreated(toPlaintextString());
     }
 

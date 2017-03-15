@@ -11,7 +11,7 @@ class PolishTree : public QObject
 
 public:
     /* Constructor */
-    PolishTree() : root(nullptr) {}
+    PolishTree() : root(nullptr), wff(false) {}
 
     /* Destructor */
     ~PolishTree();
@@ -27,6 +27,9 @@ public:
 
     void redraw();
 
+    /* Boolean identifiers */
+    bool isWFF() { return wff; }
+
 signals:
     void treeChanged(QString plain, QString latex, QString lisp);
     void wffCreated(QString plain);
@@ -34,6 +37,8 @@ signals:
 private:
     PolishNode* root;
     QStack<PolishNode*> stack;
+
+    bool wff;
 };
 
 #endif // POLISHTREE_H

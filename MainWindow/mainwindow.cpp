@@ -18,16 +18,8 @@ MainWindow::MainWindow(QWidget *parent) :
     listModel = new QStringListModel(formulaList, NULL);
     ui->listView->setModel(listModel);
 
-    // Connections
-    connect(tree,
-            SIGNAL(treeChanged(QString,QString,QString)),
-            this,
-            SLOT(updateText(QString,QString,QString)));
-
-    connect(tree,
-            SIGNAL(wffCreated(QString)),
-            this,
-            SLOT(addWFF(QString)));
+    // Connect the tree's signals to these slots
+    connectTree();
 }
 
 MainWindow::~MainWindow()
@@ -44,8 +36,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     // Letters A-Z add statements
     if (event->key() >= 65 && event->key() <= 90)
     {
-        ICommand* command = new CAddNode(tree, event->text().toUpper(), 0);
-        commandInvoker->runCommand(command);
+        addNodeHelper(event->text().toUpper(), 0);
         return;
     }
 
@@ -53,31 +44,39 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     switch (event->key())
     {
     case Qt::Key_Ampersand:
-        addBinaryOperatorHelper("∧");
+        addNodeHelper("∧", 2);
         break;
     case Qt::Key_Bar:
-        addBinaryOperatorHelper("∨");
+        addNodeHelper("∨", 2);
         break;
     case Qt::Key_Dollar:
-        addBinaryOperatorHelper("→");
+        addNodeHelper("→", 2);
         break;
     case Qt::Key_Percent:
-        addBinaryOperatorHelper("↔");
+        addNodeHelper("↔", 2);
         break;
     case Qt::Key_AsciiTilde:
-    {
-        ICommand* command = new CAddNode(tree, "¬", 1);
-        commandInvoker->runCommand(command);
+        addNodeHelper("¬", 1);
         break;
-    }
     default: // Pass it on
         QMainWindow::keyPressEvent(event);
     }
 }
 
-void MainWindow::addBinaryOperatorHelper(QString op)
+void MainWindow::addNodeHelper(QString text, int arity)
 {
-    ICommand* command = new CAddNode(tree, op, 2);
+    // Check for WFF
+    if (tree->isWFF())
+    {
+        // Get rid of the old tree
+        disconnect(tree);
+
+        // Make a new one and connect
+        tree = new PolishTree();
+        connectTree();
+    }
+
+    ICommand* command = new CAddNode(tree, text, arity);
     commandInvoker->runCommand(command);
 }
 
@@ -99,4 +98,17 @@ void MainWindow::addWFF(QString plain)
 {
     formulaList.append(plain);
     listModel->setStringList(formulaList);
+}
+
+void MainWindow::connectTree()
+{
+    connect(tree,
+            SIGNAL(treeChanged(QString,QString,QString)),
+            this,
+            SLOT(updateText(QString,QString,QString)));
+
+    connect(tree,
+            SIGNAL(wffCreated(QString)),
+            this,
+            SLOT(addWFF(QString)));
 }

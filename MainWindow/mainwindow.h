@@ -24,7 +24,9 @@ private:
     CommandInvoker* commandInvoker;
     void keyPressEvent(QKeyEvent* event);
 
-    void addBinaryOperatorHelper(QString op);
+    void addNodeHelper(QString text, int arity);
+
+    void connectTree();
 
     QStringList formulaList;
     QStringListModel* listModel;
