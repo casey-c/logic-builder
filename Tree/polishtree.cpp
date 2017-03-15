@@ -1,18 +1,9 @@
 #include "polishtree.h"
 #include <QDebug>
 
-//////////////////////////////////
-/// Constructor and Destructor ///
-//////////////////////////////////
-
-/*
- * Constructor
- */
-PolishTree::PolishTree()
-{
-    root = nullptr;
-    // TODO: implementation
-}
+//////////////////
+/// Destructor ///
+//////////////////
 
 /*
  * Destructor deletes the root node
@@ -80,7 +71,9 @@ bool PolishTree::addNArityNode(int arity, QString t)
 
     // Check to see if we've made a WFF yet
     if (stack.isEmpty())
-        qDebug() << "We made a WFF!";
+    {
+        emit wffCreated(toPlaintextString());
+    }
 
     return true;
 }

@@ -15,11 +15,19 @@ MainWindow::MainWindow(QWidget *parent) :
     tree = new PolishTree();
     commandInvoker = new CommandInvoker();
 
+    listModel = new QStringListModel(formulaList, NULL);
+    ui->listView->setModel(listModel);
+
     // Connections
     connect(tree,
             SIGNAL(treeChanged(QString,QString,QString)),
             this,
             SLOT(updateText(QString,QString,QString)));
+
+    connect(tree,
+            SIGNAL(wffCreated(QString)),
+            this,
+            SLOT(addWFF(QString)));
 }
 
 MainWindow::~MainWindow()
@@ -85,4 +93,10 @@ void MainWindow::updateText(QString plain, QString latex, QString lisp)
     ui->line_plain->setText(plain);
     ui->line_latex->setText(latex);
     ui->line_lisp->setText(lisp);
+}
+
+void MainWindow::addWFF(QString plain)
+{
+    formulaList.append(plain);
+    listModel->setStringList(formulaList);
 }

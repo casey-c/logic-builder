@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QStringListModel>
 #include "Tree/polishtree.h"
 #include "Command/commandinvoker.h"
 
@@ -25,8 +26,12 @@ private:
 
     void addBinaryOperatorHelper(QString op);
 
+    QStringList formulaList;
+    QStringListModel* listModel;
+
 public slots:
     void updateText(QString plain, QString latex, QString lisp);
+    void addWFF(QString plain);
 };
 
 #endif // MAINWINDOW_H
