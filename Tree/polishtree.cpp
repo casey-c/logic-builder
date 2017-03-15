@@ -40,7 +40,13 @@ bool PolishTree::addNArityNode(int arity, QString t)
         for (int i = 0; i < arity; ++i)
             stack.push(root->makeNewChild());
 
-        // Don't want to do anything else yet
+        // Check to see if we've made a WFF yet
+        if (stack.isEmpty())
+        {
+            wff = true;
+            emit wffCreated(toPlaintextString());
+        }
+
         return true;
     }
 
@@ -121,8 +127,15 @@ QString PolishTree::toLatexString(QString plain)
  */
 QString PolishTree::toLispString()
 {
-    // TODO: implementation
-    return "";
+    // Nothing to convert
+    if (root == nullptr)
+        return "";
+
+    else
+    {
+        qDebug() << "attempting to return root get lisp";
+        return root->getLisp();
+    }
 }
 
 /*

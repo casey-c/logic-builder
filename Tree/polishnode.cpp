@@ -1,4 +1,5 @@
 #include "polishnode.h"
+#include <QStack>
 
 //////////////////
 /// Destructor ///
@@ -89,6 +90,44 @@ QString PolishNode::getPlaintext()
         result += ")";
 
     return result;
+}
+
+QString PolishNode::getLisp()
+{
+
+    // DFS based
+    QStack<PolishNode*> stack;
+    QList<PolishNode*> visited;
+    QString result = "";
+
+    stack.push(this);
+
+    while (!stack.isEmpty())
+    {
+        PolishNode* node = stack.pop();
+        visited.prepend(node);
+
+        // Add the text
+        result += node->text + " ";
+
+        // Add the children
+        QList<PolishNode*>::reverse_iterator it = node->children.rbegin();
+        for (; it != node->children.rend(); ++it)
+        {
+            if (visited.contains((*it)))
+                continue;
+
+            stack.push((*it));
+
+        }
+    }
+
+    // Chop off the final space
+    if (result.length() > 0) // paranoia bounds check
+        return result.left(result.length() - 1);
+    else
+        return "";
+
 }
 
 

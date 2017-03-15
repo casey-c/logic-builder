@@ -51,9 +51,7 @@ public:
 
     /* Print */
     QString getPlaintext();
-
-    /* Boolean identifiers */
-    bool isLeaf() { return children.isEmpty(); }
+    QString getLisp();
 
     /* Getters */
     QString getText() { return text; }
