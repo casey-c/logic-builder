@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QStringListModel>
+#include <QActionGroup>
+
 #include "Tree/polishtree.h"
 #include "Command/commandinvoker.h"
 
@@ -33,15 +35,20 @@ private:
 
     bool autocopy;
 
+    QActionGroup* autocopyGroup;
+
 public slots:
     void updateText(QString plain, QString latex, QString lisp);
     void addWFF(QString plain, QString latex, QString lisp);
 
 private slots:
-    void on_checkBox_clicked();
+    /* Copy buttons */
     void on_button_copy_plain_clicked();
     void on_button_copy_latex_clicked();
     void on_button_copy_lisp_clicked();
+
+
+    void changeAutoCopy(QAction* action);
 };
 
 #endif // MAINWINDOW_H

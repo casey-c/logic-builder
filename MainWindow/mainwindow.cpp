@@ -20,6 +20,20 @@ MainWindow::MainWindow(QWidget *parent) :
     listModel = new QStringListModel(formulaList, NULL);
     ui->listView->setModel(listModel);
 
+    // Autocopy
+    autocopyGroup = new QActionGroup(this);
+    ui->menu_autocopy_disable->setActionGroup(autocopyGroup);
+    ui->menu_autocopy_plain->setActionGroup(autocopyGroup);
+    ui->menu_autocopy_latex->setActionGroup(autocopyGroup);
+    ui->menu_autocopy_lisp->setActionGroup(autocopyGroup);
+
+    // Make sure changes in the group update
+    connect(autocopyGroup,
+            SIGNAL(triggered(QAction*)),
+            this,
+            SLOT(changeAutoCopy(QAction*)));
+
+
     // Connect the tree's signals to these slots
     connectTree();
 }
@@ -35,6 +49,8 @@ MainWindow::~MainWindow()
  */
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
+    qDebug() << "key press " << event->text();
+
     // Letters A-Z add statements
     if (event->key() >= 65 && event->key() <= 90)
     {
@@ -106,11 +122,11 @@ void MainWindow::addWFF(QString plain, QString latex, QString lisp)
         return;
 
     // Copy to clipboard
-    if (ui->radio_plain->isChecked())
+    if (ui->menu_autocopy_plain->isChecked())
         QApplication::clipboard()->setText(plain);
-    else if (ui->radio_latex->isChecked())
+    else if (ui->menu_autocopy_latex->isChecked())
         QApplication::clipboard()->setText(latex);
-    else if (ui->radio_lisp->isChecked())
+    else if (ui->menu_autocopy_lisp->isChecked())
         QApplication::clipboard()->setText(lisp);
 }
 
@@ -127,16 +143,6 @@ void MainWindow::connectTree()
             SLOT(addWFF(QString,QString,QString)));
 }
 
-void MainWindow::on_checkBox_clicked()
-{
-    autocopy = !autocopy;
-
-    // Update the radio boxes' enabled status
-    ui->radio_plain->setEnabled(autocopy);
-    ui->radio_latex->setEnabled(autocopy);
-    ui->radio_lisp->setEnabled(autocopy);
-}
-
 void MainWindow::on_button_copy_plain_clicked()
 {
     QApplication::clipboard()->setText(ui->line_plain->text());
@@ -150,4 +156,10 @@ void MainWindow::on_button_copy_latex_clicked()
 void MainWindow::on_button_copy_lisp_clicked()
 {
     QApplication::clipboard()->setText(ui->line_lisp->text());
+}
+
+void MainWindow::changeAutoCopy(QAction *action)
+{
+    // Enable autocopy on everything but disable
+    autocopy = (action != ui->menu_autocopy_disable);
 }

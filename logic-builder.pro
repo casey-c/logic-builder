@@ -49,3 +49,6 @@ test{
 }
 
 FORMS    += MainWindow/mainwindow.ui
+
+RESOURCES += \
+    resources.qrc
