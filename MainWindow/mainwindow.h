@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "Tree/polishtree.h"
+#include "Command/commandinvoker.h"
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +19,11 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    PolishTree* tree;
+    CommandInvoker* commandInvoker;
+    void keyPressEvent(QKeyEvent* event);
+
+    void addBinaryOperatorHelper(QString op);
 };
 
 #endif // MAINWINDOW_H

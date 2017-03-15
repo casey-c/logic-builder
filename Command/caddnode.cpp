@@ -5,7 +5,13 @@
  */
 bool CAddNode::execute()
 {
-    return tree->addNArityNode(arity, nodeText);
+    bool success = tree->addNArityNode(arity, nodeText);
+
+    // If we've done any changes, redraw the tree
+    if (success)
+        tree->update();
+
+    return success;
 }
 
 /*

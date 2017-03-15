@@ -127,3 +127,9 @@ QString PolishTree::toTreeString()
     // TODO: implementation
     return nullptr;
 }
+
+void PolishTree::update()
+{
+    qDebug() << "Tree changed, now looks like: ";
+    qDebug() << toPlaintextString();
+}

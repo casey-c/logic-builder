@@ -25,6 +25,8 @@ public:
     QString toLispString();
     QString toTreeString();
 
+    void update();
+
 private:
     PolishNode* root;
     QStack<PolishNode*> stack;
