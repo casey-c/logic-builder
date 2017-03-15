@@ -14,6 +14,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     tree = new PolishTree();
     commandInvoker = new CommandInvoker();
+
+    // Connections
+    connect(tree,
+            SIGNAL(treeChanged(QString,QString,QString)),
+            this,
+            SLOT(updateText(QString,QString,QString)));
 }
 
 MainWindow::~MainWindow()
@@ -65,4 +71,18 @@ void MainWindow::addBinaryOperatorHelper(QString op)
 {
     ICommand* command = new CAddNode(tree, op, 2);
     commandInvoker->runCommand(command);
+}
+
+///////////////
+/// Updates ///
+///////////////
+
+/*
+ * Slot updates the ui text boxes
+ */
+void MainWindow::updateText(QString plain, QString latex, QString lisp)
+{
+    ui->line_plain->setText(plain);
+    ui->line_latex->setText(latex);
+    ui->line_lisp->setText(lisp);
 }

@@ -24,6 +24,9 @@ private:
     void keyPressEvent(QKeyEvent* event);
 
     void addBinaryOperatorHelper(QString op);
+
+public slots:
+    void updateText(QString plain, QString latex, QString lisp);
 };
 
 #endif // MAINWINDOW_H

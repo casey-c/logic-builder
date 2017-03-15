@@ -3,9 +3,12 @@
 
 #include "polishnode.h"
 #include <QStack>
+#include <QObject>
 
-class PolishTree
+class PolishTree : public QObject
 {
+    Q_OBJECT
+
 public:
     /* Constructor */
     PolishTree();
@@ -25,7 +28,10 @@ public:
     QString toLispString();
     QString toTreeString();
 
-    void update();
+    void redraw();
+
+signals:
+    void treeChanged(QString plain, QString latex, QString lisp);
 
 private:
     PolishNode* root;

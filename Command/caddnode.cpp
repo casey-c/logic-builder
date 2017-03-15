@@ -9,7 +9,7 @@ bool CAddNode::execute()
 
     // If we've done any changes, redraw the tree
     if (success)
-        tree->update();
+        tree->redraw();
 
     return success;
 }

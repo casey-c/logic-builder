@@ -8,8 +8,9 @@
 /*
  * Constructor
  */
-PolishTree::PolishTree() : root(nullptr)
+PolishTree::PolishTree()
 {
+    root = nullptr;
     // TODO: implementation
 }
 
@@ -107,7 +108,7 @@ QString PolishTree::toPlaintextString()
 QString PolishTree::toLatexString()
 {
     // TODO: implementation
-    return nullptr;
+    return "";
 }
 
 /*
@@ -116,7 +117,7 @@ QString PolishTree::toLatexString()
 QString PolishTree::toLispString()
 {
     // TODO: implementation
-    return nullptr;
+    return "";
 }
 
 /*
@@ -128,8 +129,7 @@ QString PolishTree::toTreeString()
     return nullptr;
 }
 
-void PolishTree::update()
+void PolishTree::redraw()
 {
-    qDebug() << "Tree changed, now looks like: ";
-    qDebug() << toPlaintextString();
+    emit(treeChanged(toPlaintextString(), toLatexString(), toLispString()));
 }
