@@ -132,10 +132,7 @@ QString PolishTree::toLispString()
         return "";
 
     else
-    {
-        qDebug() << "attempting to return root get lisp";
         return root->getLisp();
-    }
 }
 
 /*

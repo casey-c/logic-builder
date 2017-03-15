@@ -92,20 +92,28 @@ QString PolishNode::getPlaintext()
     return result;
 }
 
+/*
+ * Runs a DFS to generate the same order of commands entered. Obviously, it
+ * would be more efficient to just save the order of keypresses as you type
+ * them, but this way also produces the ___ characters of the next inputs.
+ *
+ * I kind of like that feature, so I'm going to make the LISP output do all this
+ * work here.
+ *
+ * Note: this function is ideally run off of root as that will get all the
+ * commands for the whole tree, but it can work on a younger node too.
+ */
 QString PolishNode::getLisp()
 {
+    QString result = "";
 
     // DFS based
     QStack<PolishNode*> stack;
-    QList<PolishNode*> visited;
-    QString result = "";
-
     stack.push(this);
 
     while (!stack.isEmpty())
     {
         PolishNode* node = stack.pop();
-        visited.prepend(node);
 
         // Add the text
         result += node->text + " ";
@@ -113,17 +121,11 @@ QString PolishNode::getLisp()
         // Add the children
         QList<PolishNode*>::reverse_iterator it = node->children.rbegin();
         for (; it != node->children.rend(); ++it)
-        {
-            if (visited.contains((*it)))
-                continue;
-
             stack.push((*it));
-
-        }
     }
 
     // Chop off the final space
-    if (result.length() > 0) // paranoia bounds check
+    if (result.length() > 0)
         return result.left(result.length() - 1);
     else
         return "";
