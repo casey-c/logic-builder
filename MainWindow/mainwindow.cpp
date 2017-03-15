@@ -136,3 +136,18 @@ void MainWindow::on_checkBox_clicked()
     ui->radio_latex->setEnabled(autocopy);
     ui->radio_lisp->setEnabled(autocopy);
 }
+
+void MainWindow::on_button_copy_plain_clicked()
+{
+    QApplication::clipboard()->setText(ui->line_plain->text());
+}
+
+void MainWindow::on_button_copy_latex_clicked()
+{
+    QApplication::clipboard()->setText(ui->line_latex->text());
+}
+
+void MainWindow::on_button_copy_lisp_clicked()
+{
+    QApplication::clipboard()->setText(ui->line_lisp->text());
+}

@@ -117,7 +117,7 @@ QString PolishTree::toLatexString(QString plain)
     //   * ↔: \leftrightarrow
     QString result = plain.replace("∧", "\\land");
     result = result.replace("∨", "\\lor");
-    result = result.replace("¬", "\\neg");
+    result = result.replace("¬", "\\neg ");
     result = result.replace("→", "\\to");
     result = result.replace("↔", "\\leftrightarrow");
 

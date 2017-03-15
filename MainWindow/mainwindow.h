@@ -39,6 +39,9 @@ public slots:
 
 private slots:
     void on_checkBox_clicked();
+    void on_button_copy_plain_clicked();
+    void on_button_copy_latex_clicked();
+    void on_button_copy_lisp_clicked();
 };
 
 #endif // MAINWINDOW_H
