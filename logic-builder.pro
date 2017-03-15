@@ -6,6 +6,9 @@
 
 QT       += core gui
 
+# Uncomment the following line to run tests
+#CONFIG += test
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = logic-builder
@@ -24,8 +27,28 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+    MainWindow/mainwindow.cpp \
+    Tree/polishtree.cpp \
+    Tree/polishnode.cpp \
+    Command/commandinvoker.cpp \
+    Command/caddnode.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += MainWindow/mainwindow.h \
+    Tree/polishtree.h \
+    Tree/polishnode.h \
+    Command/icommand.h \
+    Command/commandinvoker.h \
+    Command/caddnode.h
 
-FORMS    += mainwindow.ui
+test{
+    HEADERS += Test/testplaintext.h
+    SOURCES += Test/testplaintext.cpp
+    SOURCES -= main.cpp
+
+    QT += testlib
+}
+
+FORMS    += MainWindow/mainwindow.ui
+
+RESOURCES += \
+    resources.qrc
