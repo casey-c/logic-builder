@@ -7,6 +7,8 @@ Logic-builder is a tool written in Qt-C++ designed for the production of well fo
 with several more export types planned. Logic-builder can export these types to the clipboard or to a file. Planned features include integration with the Fitch software file format, but that's a long term goal.
 
 ### Release
+https://github.com/casey-c/logic-builder/releases/tag/v0.1
+
 Logic-builder's most recent release is alpha-0.1. It has the following supported operators:
  * & produces a binary ∧
  * | produces a binary ∨
